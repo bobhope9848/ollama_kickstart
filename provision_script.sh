@@ -2,9 +2,6 @@
 
 
 # Set envs
-
-set -euo pipefail
-
 # Pull env vars injected into the container by Vast at Docker level
 # These exist in the container env but not in the SSH shell session
 
