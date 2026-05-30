@@ -1,6 +1,25 @@
 #!/bin/bash
+
+
+# Set envs
+
+set -euo pipefail
+
+# Pull env vars injected into the container by Vast at Docker level
+# These exist in the container env but not in the SSH shell session
+OLLAMA_MODEL="$(grep OLLAMA_MODEL /proc/1/environ | tr '\0' '\n' | grep OLLAMA_MODEL | cut -d= -f2-)"
+HF_GGUF_MODEL="$(grep HF_GGUF_MODEL /proc/1/environ | tr '\0' '\n' | grep HF_GGUF_MODEL | cut -d= -f2-)"
+OUTPUT_MODEL="$(grep OUTPUT_MODEL /proc/1/environ | tr '\0' '\n' | grep OUTPUT_MODEL | cut -d= -f2-)"
+
+# Run ollama
 OLLAMA_HOST=0.0.0.0 ollama serve > ~/ollama.log 2>&1 &
-sleep 5
+
+# Wait for ollama API to be ready
+echo "==> Waiting for ollama to be ready..."
+until curl -sf http://localhost:11434/api/tags > /dev/null 2>&1; do
+    sleep 2
+done
+echo "==> ollama ready."
 
 # Download extra scripts
 
