@@ -4,6 +4,6 @@ sleep 5
 
 # Download extra scripts
 
-curl -fsSL https://github.com/bobhope9848/ollama_kickstart/blob/master/download_models.sh -o ~/download_models.sh
+curl -fsSL https://raw.githubusercontent.com/bobhope9848/ollama_kickstart/refs/heads/master/download_models.sh -o ~/download_models.sh
 chmod +x ~/download_models.sh
 bash ~/download_models.sh
