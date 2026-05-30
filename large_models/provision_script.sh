@@ -30,5 +30,5 @@ hf auth login --token "${HF_TOKEN}" --add-to-git-credential
 export HF_XET_HIGH_PERFORMANCE=1
 
 # ── Download and run ──────────────────────────────────────────────────────────
-killall llama-server
-llama-server -hf "${LLAMA_MODEL}"
+
+hf download bartowski/TheDrummer_Behemoth-X-123B-v2-GGUF --include "TheDrummer_Behemoth-X-123B-v2-Q8_0/*.gguf"
