@@ -7,9 +7,10 @@ set -euo pipefail
 
 # Pull env vars injected into the container by Vast at Docker level
 # These exist in the container env but not in the SSH shell session
-OLLAMA_MODEL="$(grep OLLAMA_MODEL /proc/1/environ | tr '\0' '\n' | grep OLLAMA_MODEL | cut -d= -f2-)"
-HF_GGUF_MODEL="$(grep HF_GGUF_MODEL /proc/1/environ | tr '\0' '\n' | grep HF_GGUF_MODEL | cut -d= -f2-)"
-OUTPUT_MODEL="$(grep OUTPUT_MODEL /proc/1/environ | tr '\0' '\n' | grep OUTPUT_MODEL | cut -d= -f2-)"
+
+OLLAMA_MODEL="$(tr '\0' '\n' < /proc/1/environ | grep '^OLLAMA_MODEL=' | cut -d= -f2-)"
+HF_GGUF_MODEL="$(tr '\0' '\n' < /proc/1/environ | grep '^HF_GGUF_MODEL=' | cut -d= -f2-)"
+OUTPUT_MODEL="$(tr '\0' '\n' < /proc/1/environ | grep '^OUTPUT_MODEL=' | cut -d= -f2-)"
 
 # Run ollama
 OLLAMA_HOST=0.0.0.0 ollama serve > ~/ollama.log 2>&1 &
