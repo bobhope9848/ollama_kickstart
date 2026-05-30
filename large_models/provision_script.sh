@@ -32,6 +32,8 @@ pip install -U "huggingface_hub[cli]
 
 pip install hf_transfer
 
+hf auth login --token $HF_TOKEN --add-to-git-credential
+
 export HF_HUB_ENABLE_HF_TRANSFER=1
 
 # ── Download and run ──────────────────────────────────────────────────────────
