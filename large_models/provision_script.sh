@@ -31,4 +31,4 @@ export HF_XET_HIGH_PERFORMANCE=1
 
 # ── Download and run ──────────────────────────────────────────────────────────
 
-hf download bartowski/TheDrummer_Behemoth-X-123B-v2-GGUF --include "TheDrummer_Behemoth-X-123B-v2-Q8_0/*.gguf"
+
